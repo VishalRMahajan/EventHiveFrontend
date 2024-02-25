@@ -11,10 +11,11 @@ class LoginFormState(rx.State):
     user_entered_password: str
 
     # These are the submitted data
+    usertype: str
     email: str
     password: str
-
-
+    form_data: dict = {}
+    
     @rx.var
     def invalid_email(self) -> bool:
         return not re.match(
@@ -34,7 +35,11 @@ class LoginFormState(rx.State):
 
     def handle_submit(self, form_data: dict):
         """Handle the form submit."""
+        self.usertype = form_data.get("usertype")
         self.email = form_data.get("email")
+        self.password = form_data.get("password")
+        print(self.usertype, self.email, self.password)
+        print(form_data)
 
 def login() -> rx.Component:
     return rx.center(
@@ -43,6 +48,17 @@ def login() -> rx.Component:
             rx.text("If you are already a member, easily log in",),
             rx.form.root(
             rx.flex(
+                rx.select.root(
+                    rx.select.trigger(placeholder="Login As"),
+                    rx.select.content(
+                        rx.select.group(
+                            rx.select.item("Student", value="student"),
+                            rx.select.item("Coordinator", value="Coordinator"),
+                            name="usertype",
+                        ),
+                    ),
+                    name="usertype",
+                ),
                 rx.form.field(
                         rx.form.control(
                             rx.input.input(
