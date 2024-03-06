@@ -1,1 +1,4 @@
-reflex==0.4.1
+reflex
+sqlalchemy
+python-dotenv
+cloud-sql-python-connector[pg8000]
