@@ -17,7 +17,7 @@ def register() -> rx.Component:
                     rx.select.content(
                         rx.select.group(
                             rx.select.item("Student", value="student"),
-                            rx.select.item("Coordinator", value="Coordinator"),
+                            rx.select.item("Committee", value="committee"),
                             name="usertype",
                         ),
                     ),

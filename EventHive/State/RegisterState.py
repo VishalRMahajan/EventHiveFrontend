@@ -1,8 +1,8 @@
+import requests
 from rxconfig import config
 from typing import List
 import reflex as rx
 import re
-
 
 
 class RegisterFormState(rx.State):
@@ -46,3 +46,8 @@ class RegisterFormState(rx.State):
         self.password = form_data.get("password")
         print(self.usertype, self.email, self.password)
         print(form_data)
+        response= requests.post("http://127.0.0.1:4000/auth/register", json=form_data)
+        if response.status_code == 201:
+            return rx.redirect("/")
+        else:
+            return rx.window_alert(response.json()["message"])
