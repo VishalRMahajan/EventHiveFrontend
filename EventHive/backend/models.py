@@ -1,14 +1,22 @@
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Column, Integer, String
 from database import Base, engine
 
 
-class User(Base):
-    __tablename__ = "users"
+class Student(Base):
+    __tablename__ = "student"
 
-    pid = Column(Integer, primary_key=True, nullable=False)
     first_name = Column(String, index=True, nullable=False)
     last_name = Column(String, index=True, nullable=False)
-    email = Column(String, unique=True, index=True, nullable=False)
+    email = Column(String, primary_key=True, index=True, nullable=False)
+    password = Column(String, nullable=False)
+
+
+class Committee(Base):
+    __tablename__ = "committee"
+
+    first_name = Column(String, index=True, nullable=False)
+    last_name = Column(String, index=True, nullable=False)
+    email = Column(String, primary_key=True, index=True, nullable=False)
     password = Column(String, nullable=False)
 
 
