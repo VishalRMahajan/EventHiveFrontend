@@ -18,6 +18,7 @@ class LoginFormState(rx.State):
     email: str
     password: str
     form_data: dict = {}
+    my_local_storage: str = rx.LocalStorage(name="access_token")
     
     @rx.var
     def invalid_email(self) -> bool:
@@ -52,3 +53,8 @@ class LoginFormState(rx.State):
         }
         response= requests.post("http://127.0.0.1:4000/auth/login",params = params, data=data)
         print(response.json())
+        response_json = response.json()
+        my_local_storage =response_json['access_token']
+        if response.status_code == 200:
+            self.my_local_storage = my_local_storage
+            return rx.redirect("/dashboard")

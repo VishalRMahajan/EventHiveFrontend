@@ -3,6 +3,8 @@ from EventHive.templates import template
 
 import reflex as rx
 
+class DashboardState(rx.State):
+    access_token = rx.LocalStorage(name="access_token")
 
 @template(route="/dashboard", title="Dashboard")
 def dashboard() -> rx.Component:
