@@ -1,7 +1,10 @@
+import json
+import requests
 from rxconfig import config
 from typing import List
 import reflex as rx
 import re
+import urllib.parse
 
 
 
@@ -39,4 +42,13 @@ class LoginFormState(rx.State):
         self.email = form_data.get("email")
         self.password = form_data.get("password")
         print(self.usertype, self.email, self.password)
-        print(form_data)
+        print((form_data))
+        data = {
+            "username": self.email,
+            "password": self.password,
+        }
+        params = {
+            "usertype": self.usertype,
+        }
+        response= requests.post("http://127.0.0.1:4000/auth/login",params = params, data=data)
+        print(response.json())
