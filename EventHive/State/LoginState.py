@@ -42,19 +42,14 @@ class LoginFormState(rx.State):
         self.usertype = form_data.get("usertype")
         self.email = form_data.get("email")
         self.password = form_data.get("password")
-        print(self.usertype, self.email, self.password)
-        print((form_data))
         data = {
             "username": self.email,
             "password": self.password,
         }
-        params = {
-            "usertype": self.usertype,
-        }
-        response= requests.post("http://127.0.0.1:4000/auth/login",params = params, data=data)
+        response= requests.post("http://127.0.0.1:4000/auth/login",data=data)
         print(response.json())
         response_json = response.json()
-        my_local_storage =response_json['access_token']
         if response.status_code == 200:
+            my_local_storage =response_json['access_token']
             self.my_local_storage = my_local_storage
             return rx.redirect("/dashboard")

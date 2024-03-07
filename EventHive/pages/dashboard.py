@@ -1,12 +1,13 @@
 """The dashboard page."""
+import requests
 from EventHive.templates import template
-
+from EventHive.State.loginrequired import LoginReqState 
 import reflex as rx
 
 class DashboardState(rx.State):
-    access_token = rx.LocalStorage(name="access_token")
+    pass
 
-@template(route="/dashboard", title="Dashboard")
+@template(route="/dashboard", title="Dashboard", on_load=LoginReqState.login_required)
 def dashboard() -> rx.Component:
     """The dashboard page.
 
