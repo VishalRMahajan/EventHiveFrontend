@@ -3,7 +3,7 @@ from rxconfig import config
 from typing import List
 import reflex as rx
 import re
-
+from shared import Backend
 
 class RegisterFormState(rx.State):
     # These track the user input real time for validation
@@ -46,7 +46,7 @@ class RegisterFormState(rx.State):
         self.password = form_data.get("password")
         print(self.usertype, self.email, self.password)
         print(form_data)
-        response= requests.post("http://127.0.0.1:4000/auth/register", json=form_data)
+        response= requests.post(Backend+"/auth/register", json=form_data)
         if response.status_code == 201:
             return rx.redirect("/")
         else:

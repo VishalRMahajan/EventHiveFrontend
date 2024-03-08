@@ -5,6 +5,7 @@ from typing import List
 import reflex as rx
 import re
 import urllib.parse
+from shared import Backend
 
 
 
@@ -19,6 +20,8 @@ class LoginFormState(rx.State):
     password: str
     form_data: dict = {}
     my_local_storage: str = rx.LocalStorage(name="access_token")
+    error : bool = False
+    error_text: str 
     
     @rx.var
     def invalid_email(self) -> bool:
@@ -46,10 +49,13 @@ class LoginFormState(rx.State):
             "username": self.email,
             "password": self.password,
         }
-        response= requests.post("http://127.0.0.1:4000/auth/login",data=data)
+        response= requests.post(Backend+"/auth/login",data=data)
         print(response.json())
         response_json = response.json()
         if response.status_code == 200:
             my_local_storage =response_json['access_token']
             self.my_local_storage = my_local_storage
             return rx.redirect("/dashboard")
+        else:
+            self.error = True
+            self.error_text = response_json['detail']

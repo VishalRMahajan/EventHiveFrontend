@@ -21,6 +21,7 @@ def login() -> rx.Component:
                         ),
                     ),
                     name="usertype",
+                    required=True,
                 ),
                 rx.form.field(
                         rx.form.control(
@@ -41,6 +42,7 @@ def login() -> rx.Component:
                         ),
                     name="email",
                     server_invalid=LoginFormState.invalid_email,
+                    required=True,
                 ),
                 rx.form.field(
                     rx.form.control(
@@ -62,6 +64,7 @@ def login() -> rx.Component:
                         font_size="0.85em",
                     ),
                     name="password",
+                    required=True,
                 ),
                 rx.form.submit(
                     rx.button(
@@ -77,6 +80,11 @@ def login() -> rx.Component:
             ),
             on_submit=LoginFormState.handle_submit,
             reset_on_submit=True,
+        ),
+        rx.cond(
+            LoginFormState.error,
+            rx.text(LoginFormState.error_text, color="var(--red-11)"),
+            None,
         ),
         rx.divider(),
         rx.text(
