@@ -4,7 +4,6 @@ from ..State.LoginState import LoginFormState
 
 
 
-
 def login() -> rx.Component:
     return rx.center(
         rx.flex(

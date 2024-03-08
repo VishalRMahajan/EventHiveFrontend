@@ -1,7 +1,7 @@
 """Sidebar component for the app."""
 
 from EventHive import styles
-
+from EventHive.State.loginrequired import LoginReqState
 import reflex as rx
 
 
@@ -50,15 +50,9 @@ def sidebar_footer() -> rx.Component:
     """
     return rx.hstack(
         rx.spacer(),
-        rx.link(
-            rx.text("Docs"),
-            href="https://reflex.dev/docs/getting-started/introduction/",
-            style=styles.link_style,
-        ),
-        rx.link(
-            rx.text("Blog"),
-            href="https://reflex.dev/blog/",
-            style=styles.link_style,
+        rx.button(
+            "Logout",
+            on_click=LoginReqState.logout,
         ),
         width="100%",
         border_top=styles.border,

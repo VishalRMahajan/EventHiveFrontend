@@ -4,7 +4,7 @@ import reflex as rx
 
 border_radius = "0.375rem"
 box_shadow = "0px 0px 0px 1px rgba(84, 82, 95, 0.14)"
-border = f"1px solid {rx.color('accent', 12)}"
+border = f"0px solid {rx.color('accent', 12)}"
 text_color = rx.color("gray", 11)
 accent_text_color = rx.color("accent", 10)
 accent_color = rx.color("accent", 1)
