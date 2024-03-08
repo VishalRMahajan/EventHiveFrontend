@@ -14,6 +14,5 @@ class State(rx.State):
 
 # Create the app.
 app = rx.App(style=styles.base_style)
-
 app.add_page(login, "/", title="Login")
 app.add_page(register, "/register", title="Register")

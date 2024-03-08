@@ -1,11 +1,9 @@
 """The dashboard page."""
-import requests
-from EventHive.templates import template
-from EventHive.State.loginrequired import LoginReqState 
-import reflex as rx
 
-class DashboardState(rx.State):
-    pass
+from EventHive.templates import template
+
+import reflex as rx
+from EventHive.State.loginrequired import LoginReqState
 
 @template(route="/dashboard", title="Dashboard", on_load=LoginReqState.login_required)
 def dashboard() -> rx.Component:
@@ -14,11 +12,11 @@ def dashboard() -> rx.Component:
     Returns:
         The UI for the dashboard page.
     """
-    return rx.chakra.vstack(
-        rx.chakra.heading("Dashboard", font_size="3em"),
-        rx.chakra.text("Welcome to Reflex!"),
-        rx.chakra.text(
+    return rx.vstack(
+        rx.heading("Dashboard", size="8"),
+        rx.text("Welcome to Reflex!"),
+        rx.text(
             "You can edit this page in ",
-            rx.chakra.code("{your_app}/pages/dashboard.py"),
+            rx.code("{your_app}/pages/dashboard.py"),
         ),
     )
