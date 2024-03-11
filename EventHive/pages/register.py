@@ -10,6 +10,18 @@ def register() -> rx.Component:
         rx.flex(
             rx.heading("Register", align="center"),
             rx.text("Fill the Following Details",),
+            rx.cond(
+                RegisterFormState.error,
+                rx.callout(
+                    RegisterFormState.error_text,
+                    icon="alert_triangle",
+                    color_scheme="red",
+                    role="alert",
+                    width="20em",
+                    size="1",
+                ),
+                None,
+            ),
             rx.form.root(
             rx.flex(
                 rx.select.root(
@@ -20,6 +32,7 @@ def register() -> rx.Component:
                             rx.select.item("Committee", value="committee"),
                             name="usertype",
                         ),
+                        color_scheme="teal",
                     ),
                     name="usertype",
                 ),
@@ -125,5 +138,5 @@ def register() -> rx.Component:
         ),
         width="100%",
         height="100vh",
-        bg_color="#0a192f",
+        bg_color="teal",
     )

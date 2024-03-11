@@ -12,11 +12,8 @@ def dashboard() -> rx.Component:
     Returns:
         The UI for the dashboard page.
     """
-    return rx.vstack(
-        rx.heading("Dashboard", size="8"),
-        rx.text("Welcome to Reflex!"),
-        rx.text(
-            "You can edit this page in ",
-            rx.code("{your_app}/pages/dashboard.py"),
-        ),
+    return rx.flex(
+        rx.heading("Dashboard", size="8", align="center"),
+        rx.text("Welcome to EventHive!", align="center"),
+        direction="column", 
     )

@@ -17,6 +17,8 @@ class RegisterFormState(rx.State):
     fname: str
     lname: str
     form_data: dict = {}
+    error : bool = False
+    error_text: str 
     
     @rx.var
     def invalid_email(self) -> bool:
@@ -50,4 +52,5 @@ class RegisterFormState(rx.State):
         if response.status_code == 201:
             return rx.redirect("/")
         else:
-            return rx.window_alert(response.json()["message"])
+            self.error = True
+            self.error_text = response.json()['message']

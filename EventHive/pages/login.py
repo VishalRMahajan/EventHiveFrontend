@@ -9,6 +9,18 @@ def login() -> rx.Component:
         rx.flex(
             rx.heading("Login", align="center"),
             rx.text("If you are already a member, easily log in",),
+            rx.cond(
+                LoginFormState.error,
+                rx.callout(
+                    LoginFormState.error_text,
+                    icon="alert_triangle",
+                    color_scheme="red",
+                    role="alert",
+                    width="20em",
+                    size="1",
+                ),
+                None,
+            ),
             rx.form.root(
             rx.flex(
                 rx.select.root(
@@ -19,6 +31,7 @@ def login() -> rx.Component:
                             rx.select.item("Coordinator", value="Coordinator"),
                             name="usertype",
                         ),
+                        color_scheme="teal",
                     ),
                     name="usertype",
                     required=True,
@@ -30,6 +43,7 @@ def login() -> rx.Component:
                                 on_change=LoginFormState.set_user_entered_email,
                                 name="email",
                                 size="2",
+                                required=True,
                             ),
                             as_child=True,
                         ),
@@ -42,7 +56,6 @@ def login() -> rx.Component:
                         ),
                     name="email",
                     server_invalid=LoginFormState.invalid_email,
-                    required=True,
                 ),
                 rx.form.field(
                     rx.form.control(
@@ -53,6 +66,7 @@ def login() -> rx.Component:
                             type="password",
                             size="2",
                             min_length=8,
+                            required=True,
                         ),
                         as_child=True,
                     ),
@@ -64,7 +78,6 @@ def login() -> rx.Component:
                         font_size="0.85em",
                     ),
                     name="password",
-                    required=True,
                 ),
                 rx.form.submit(
                     rx.button(
@@ -80,11 +93,6 @@ def login() -> rx.Component:
             ),
             on_submit=LoginFormState.handle_submit,
             reset_on_submit=True,
-        ),
-        rx.cond(
-            LoginFormState.error,
-            rx.text(LoginFormState.error_text, color="var(--red-11)"),
-            None,
         ),
         rx.divider(),
         rx.text(
@@ -105,5 +113,5 @@ def login() -> rx.Component:
         ),
         width="100%",
         height="100vh",
-        bg_color="#0a192f",
+        bg_color="teal",
     )
