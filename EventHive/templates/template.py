@@ -5,7 +5,7 @@ from __future__ import annotations
 from EventHive import styles
 from EventHive.components.sidebar import sidebar
 from typing import Callable
-
+from EventHive.State.loginrequired import LoginReqState
 import reflex as rx
 
 # Meta tags for the app.
@@ -32,6 +32,7 @@ def menu_item_link(text, href):
     )
 
 
+
 def menu_button() -> rx.Component:
     """The menu button on the top right of the page.
 
@@ -56,8 +57,12 @@ def menu_button() -> rx.Component:
                     for page in get_decorated_pages()
                 ],
                 rx.menu.separator(),
-                menu_item_link("About", "https://github.com/reflex-dev"),
-                menu_item_link("Contact", "mailto:founders@=reflex.dev"),
+                rx.button(
+                    "Logout",
+                    on_click=LoginReqState.logout,
+                    width="100%",
+                    color_scheme="teal",
+                ),
             ),
         ),
         position="fixed",

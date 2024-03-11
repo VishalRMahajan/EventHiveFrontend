@@ -69,7 +69,7 @@ def profile() -> rx.Component:
                 ),
                 direction="column",
                 spacing="4",
-                width="20em",
+                width="18em",
             ),
             reset_on_submit=True,
         ),

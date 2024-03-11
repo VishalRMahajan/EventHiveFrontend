@@ -13,32 +13,16 @@ def sidebar_header() -> rx.Component:
     """
     return rx.hstack(
         # The logo.
+        rx.spacer(),
         rx.color_mode_cond(
-            rx.image(src="/reflex_black.svg", height="2em"),
-            rx.image(src="/reflex_white.svg", height="2em"),
+            rx.image(src="/Eventhive.png", height="4em"),
+            rx.image(src="/Eventhive.png", height="4em"),
         ),
         rx.spacer(),
-        # Link to Reflex GitHub repo.
-        rx.link(
-            rx.center(
-                rx.image(
-                    src="/github.svg",
-                    height="3em",
-                    padding="0.5em",
-                ),
-                box_shadow=styles.box_shadow,
-                bg="transparent",
-                border_radius=styles.border_radius,
-                _hover={
-                    "bg": styles.accent_color,
-                },
-            ),
-            href="https://github.com/reflex-dev/reflex",
-        ),
         align="center",
         width="100%",
         border_bottom=styles.border,
-        padding="1em",
+        padding="2em 1em 1em 1em",
     )
 
 
@@ -54,6 +38,7 @@ def sidebar_footer() -> rx.Component:
             "Logout",
             on_click=LoginReqState.logout,
         ),
+        rx.spacer(),
         width="100%",
         border_top=styles.border,
         padding="1em",
