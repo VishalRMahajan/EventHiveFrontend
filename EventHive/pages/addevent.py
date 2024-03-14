@@ -111,13 +111,13 @@ def addevent() -> rx.Component:
                         rx.form.control(
                             rx.input.input(
                                 placeholder="Ticket Price",
-                                name="Date",
+                                name="Ticket_price",
                                 size="2",
                                 required=True,
                             ),
                             as_child=True,
                         ),
-                        name="Date",
+                        name="Ticket_price",
                     ),
                     rx.form.field(
                         rx.form.control(
@@ -164,7 +164,7 @@ def addevent() -> rx.Component:
                 spacing="4",
                 width="40em",
             ),
-            on_submit=RegisterFormState.handle_submit,
+            on_submit=Addevent.handle_submit,
             reset_on_submit=True,
         ),
             padding="2em",
