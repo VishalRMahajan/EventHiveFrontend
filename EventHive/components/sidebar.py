@@ -15,8 +15,8 @@ def sidebar_header() -> rx.Component:
         # The logo.
         rx.spacer(),
         rx.color_mode_cond(
-            rx.image(src="/Eventhive.png", height="4em"),
-            rx.image(src="/Eventhive.png", height="4em"),
+            rx.image(src="/Eventhive.png", height="3em"),
+            rx.image(src="/Eventhive.png", height="3em"),
         ),
         rx.spacer(),
         align="center",
@@ -63,23 +63,25 @@ def sidebar_item(text: str, icon: str, url: str) -> rx.Component:
 
     return rx.link(
         rx.hstack(
-            rx.image(
-                src=icon,
-                height="2.5em",
-                padding="0.5em",
-            ),
-            rx.text(
-                text,
-            ),
-            bg=rx.cond(
-                active,
-                styles.accent_color,
-                "transparent",
-            ),
-            color=rx.cond(
-                active,
-                styles.accent_text_color,
-                styles.text_color,
+            rx.center(
+                rx.image(
+                    height="2.5em",
+                    padding="0.5em",
+                ),
+                rx.text(
+                    text,
+                    align="center",
+                ),
+                bg=rx.cond(
+                    active,
+                    styles.accent_color,
+                    "transparent",
+                ),
+                color=rx.cond(
+                    active,
+                    styles.accent_text_color,
+                    styles.text_color,
+                ),
             ),
             align="center",
             border_radius=styles.border_radius,

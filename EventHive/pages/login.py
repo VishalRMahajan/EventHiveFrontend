@@ -23,19 +23,6 @@ def login() -> rx.Component:
             ),
             rx.form.root(
             rx.flex(
-                rx.select.root(
-                    rx.select.trigger(placeholder="Login As"),
-                    rx.select.content(
-                        rx.select.group(
-                            rx.select.item("Student", value="student"),
-                            rx.select.item("Coordinator", value="Coordinator"),
-                            name="usertype",
-                        ),
-                        color_scheme="teal",
-                    ),
-                    name="usertype",
-                    required=True,
-                ),
                 rx.form.field(
                         rx.form.control(
                             rx.input.input(
