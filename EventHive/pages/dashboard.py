@@ -5,6 +5,7 @@ from EventHive.templates import template
 import reflex as rx
 from EventHive.State.loginrequired import LoginReqState
 from EventHive.State.dashboardstate import DashboardState
+from EventHive.State.viewdetails import viewdetailsState
 
 def render_event(event: dict) -> rx.Component:
     return rx.card(
@@ -14,6 +15,7 @@ def render_event(event: dict) -> rx.Component:
                 rx.text(f"Venue: {event['venue']}"),
                 rx.text(f"Date: {event['date']}"),
                 rx.text(f"Time: {event['time']}"),
+                rx.text(f"Price: {event['ticket_price']}"),
                 direction="row",
                 spacing="2",
             ),
@@ -22,7 +24,7 @@ def render_event(event: dict) -> rx.Component:
                 max_height="200px"
             ),
             rx.grid(
-                rx.button("View Details"),
+                rx.button("View Details", on_click=viewdetailsState.onclick(event["event_name"])),
                 rx.button("Buy Ticket"),
                 columns="2",
                 spacing="2",

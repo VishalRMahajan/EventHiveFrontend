@@ -19,7 +19,7 @@ def profile() -> rx.Component:
                     rx.form.field(
                         rx.form.control(
                             rx.input.input(
-                                default_value=ProfileState.fname,
+                                value=ProfileState.fname,
                                 disabled=True,
                                 name="fname",
                                 size="2",
@@ -31,7 +31,7 @@ def profile() -> rx.Component:
                     rx.form.field(
                         rx.form.control(
                             rx.input.input(
-                                default_value=ProfileState.lname,
+                                value=ProfileState.lname,
                                 disabled=True,
                                 size="2",
                             ),
@@ -46,7 +46,7 @@ def profile() -> rx.Component:
                 rx.form.field(
                         rx.form.control(
                             rx.input.input(
-                                default_value=ProfileState.email,
+                                value=ProfileState.email,
                                 disabled=True,
                                 name="email",
                                 size="2",
@@ -59,7 +59,7 @@ def profile() -> rx.Component:
                 rx.form.field(
                     rx.form.control(
                         rx.input.input(
-                            default_value=ProfileState.role,
+                            value=ProfileState.role,
                             disabled=True,
                             size="2",
                         ),

@@ -1,6 +1,7 @@
 import requests
 import reflex as rx
 from shared import Backend
+from .viewdetails import viewdetailsState
 
 class DashboardState(rx.State):
     access_token: str = rx.LocalStorage(name="access_token")
@@ -14,7 +15,10 @@ class DashboardState(rx.State):
         else:
             response1= requests.get(Backend+"/fest/all", headers = {"Authorization": f"Bearer {access_token}"})
             self.events = response1.json()
-            print(self.events)
             return None
+        
+    def onclick(viewdetails, event):
+        viewdetails.event = event
+        return rx.redirect("/viewdetails")
         
     
