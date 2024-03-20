@@ -2,7 +2,6 @@
 
 from EventHive.templates import ThemeState, template
 from EventHive.State.AddeventState import Addevent
-from EventHive.State.RegisterState import RegisterFormState
 import reflex as rx
 
 
@@ -15,13 +14,13 @@ def addevent() -> rx.Component:
             rx.heading("Add Event", align="center"),
             rx.text("Fill the Following Details",),
             rx.cond(
-                RegisterFormState.error,
+                Addevent.error,
                 rx.callout(
-                    RegisterFormState.error_text,
+                    Addevent.error_text,
                     icon="alert_triangle",
                     color_scheme="red",
                     role="alert",
-                    width="20em",
+                    width="100%",
                     size="1",
                 ),
                 None,

@@ -4,10 +4,10 @@ from shared import Backend
 
 class ProfileState(rx.State):
     access_token: str = rx.LocalStorage(name="access_token")
-    fname : str
-    lname : str
-    email : str
-    role : str
+    fname : str = ""
+    lname : str = ""
+    email : str = ""
+    role : str = ""
     disabled: bool = True
     
     def enable_edit(self):
