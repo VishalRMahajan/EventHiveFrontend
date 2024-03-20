@@ -128,12 +128,9 @@ def viewdetails() -> rx.Component:
                     name="description",
                     height="10em",
                 ),
-                rx.form.submit(
-                    rx.button(
-                        "Submit",
-                        color_scheme="teal",
-                    ),
-                    as_child=True,
+                rx.button(
+                    "Buy Ticket",
+                    color_scheme="teal",
                 ),
                 direction="column",
                 spacing="4",

@@ -29,7 +29,9 @@ class viewdetailsState(rx.State):
         else:
             print(self.event)
             response1 = requests.get(Backend+"/fest/fetch", headers = {"Authorization": f"Bearer {access_token}"}, params = {"event_name": self.event})
-            if response1.status_code == 200:
+            if response1.status_code == 404:
+                return rx.redirect("/dashboard")
+            else:
                 print(response1.content)
                 response_json = response1.json()
                 self.event_name = response_json['event_name']
@@ -40,8 +42,7 @@ class viewdetailsState(rx.State):
                 self.time = response_json['time']
                 self.ticket_price = response_json['ticket_price']
                 self.venue = response_json['venue']
-                self.contact_number = response_json['contact_number']
-            elif response1.status_code == 404:
-                return rx.redirect("/dashboard")        
+                self.contact_number = response_json['contact_number']     
             return None
+    
     
