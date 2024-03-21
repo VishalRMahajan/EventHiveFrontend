@@ -43,6 +43,8 @@ class viewdetailsState(rx.State):
                 self.ticket_price = response_json['ticket_price']
                 self.venue = response_json['venue']
                 self.contact_number = response_json['contact_number']     
-            return None
+                return None
     
-    
+    def payment(self,ticket_price):
+        return rx.redirect(f"{Backend}/pay?amount={ticket_price}&email=vism06@gmail.com")
+        

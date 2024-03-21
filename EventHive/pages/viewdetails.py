@@ -2,6 +2,7 @@ import reflex as rx
 from EventHive.templates import template
 from EventHive.State.viewdetails import viewdetailsState
 
+@template(route="/viewdetails", title="Last Viewed Event", on_load=viewdetailsState.login_required)
 def viewdetails() -> rx.Component:
     return rx.center(
         rx.flex(
@@ -128,13 +129,9 @@ def viewdetails() -> rx.Component:
                     name="description",
                     height="10em",
                 ),
-                rx.button(
-                    "Buy Ticket",
-                    color_scheme="teal",
-                ),
+                
                 direction="column",
                 spacing="4",
-                width="40em",
             ),
         ),
             padding="2em",

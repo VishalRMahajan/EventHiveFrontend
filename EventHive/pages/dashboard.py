@@ -20,12 +20,12 @@ def render_event(event: dict) -> rx.Component:
                 spacing="2",
             ),
             rx.scroll_area(
-                rx.text(event['description']),
+                rx.text(event['description'],class_name="text-justify"),
                 max_height="200px"
             ),
             rx.grid(
                 rx.button("View Details", on_click=viewdetailsState.onclick(event["event_name"])),
-                rx.button("Buy Ticket"),
+                rx.button("Buy Ticket", on_click=viewdetailsState.payment(event["ticket_price"])),
                 columns="2",
                 spacing="2",
                 align="center",
