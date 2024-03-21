@@ -4,6 +4,7 @@ from shared import Backend
 
 class viewdetailsState(rx.State):
     access_token: str = rx.LocalStorage(name="access_token")
+    email:str
 
     event : str 
     event_name : str
@@ -24,9 +25,11 @@ class viewdetailsState(rx.State):
     def login_required(self):
         access_token = self.access_token
         response = requests.get(Backend+"/auth/protected", headers = {"Authorization": f"Bearer {access_token}"})
+        response_json = response.json()
         if response.status_code == 401:
             return rx.redirect("/")
         else:
+            self.email = response_json['email']
             print(self.event)
             response1 = requests.get(Backend+"/fest/fetch", headers = {"Authorization": f"Bearer {access_token}"}, params = {"event_name": self.event})
             if response1.status_code == 404:
@@ -46,5 +49,5 @@ class viewdetailsState(rx.State):
                 return None
     
     def payment(self,ticket_price):
-        return rx.redirect(f"{Backend}/pay?amount={ticket_price}&email=vism06@gmail.com")
+        return rx.redirect(f"{Backend}/pay?amount={ticket_price}&email={self.email}")
         

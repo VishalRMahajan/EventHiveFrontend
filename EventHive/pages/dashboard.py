@@ -30,6 +30,7 @@ def render_event(event: dict) -> rx.Component:
                 spacing="2",
                 align="center",
             ),
+            
             spacing="3",
             align="center"
         ),
