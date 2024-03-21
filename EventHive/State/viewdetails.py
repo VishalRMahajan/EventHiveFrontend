@@ -48,6 +48,14 @@ class viewdetailsState(rx.State):
                 self.contact_number = response_json['contact_number']     
                 return None
     
-    def payment(self,ticket_price):
-        return rx.redirect(f"{Backend}/pay?amount={ticket_price}&email={self.email}")
+    def payment(self,ticket_price,event_name,committee):
+        print(committee)
+        access_token = self.access_token
+        response = requests.get(Backend+"/auth/protected", headers = {"Authorization": f"Bearer {access_token}"})
+        response_json = response.json()
+        if response.status_code == 401:
+            return rx.redirect("/")
+        else:
+            self.email = response_json['email']
+        return rx.redirect(f"{Backend}/pay?amount={ticket_price}&email={self.email}&event_name={event_name}&committee={committee}")
         

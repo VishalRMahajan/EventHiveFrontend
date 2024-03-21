@@ -25,7 +25,7 @@ def render_event(event: dict) -> rx.Component:
             ),
             rx.grid(
                 rx.button("View Details", on_click=viewdetailsState.onclick(event["event_name"])),
-                rx.button("Buy Ticket", on_click=viewdetailsState.payment(event["ticket_price"])),
+                rx.button("Buy Ticket", on_click=viewdetailsState.payment(event["ticket_price"],event["event_name"],event["committee"])),
                 columns="2",
                 spacing="2",
                 align="center",
