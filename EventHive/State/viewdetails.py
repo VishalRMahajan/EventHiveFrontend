@@ -17,6 +17,9 @@ class viewdetailsState(rx.State):
     venue : str
     contact_number : str
     disabled: bool = True
+
+    error : bool = False
+    error_text: str 
     
     def onclick(self,event):
         self.event = event
@@ -49,13 +52,20 @@ class viewdetailsState(rx.State):
                 return None
     
     def payment(self,ticket_price,event_name,committee):
-        print(committee)
-        access_token = self.access_token
-        response = requests.get(Backend+"/auth/protected", headers = {"Authorization": f"Bearer {access_token}"})
-        response_json = response.json()
-        if response.status_code == 401:
-            return rx.redirect("/")
+        response = requests.post(Backend+"/checkifregistered", params={"event_name": event_name, "email": self.email, "committee": committee})
+        if response.status_code == 200:
+            self.error = True
+            self.error_text = response.json()['message']
+            print("Already registered")
+            rx.redirect("\dashboard")
         else:
-            self.email = response_json['email']
-        return rx.redirect(f"{Backend}/pay?amount={ticket_price}&email={self.email}&event_name={event_name}&committee={committee}")
+            self.error = False
+            access_token = self.access_token
+            response = requests.get(Backend+"/auth/protected", headers = {"Authorization": f"Bearer {access_token}"})
+            response_json = response.json()
+            if response.status_code == 401:
+                return rx.redirect("/")
+            else:
+                self.email = response_json['email']
+            return rx.redirect(f"{Backend}/pay?amount={ticket_price}&email={self.email}&event_name={event_name}&committee={committee}")
         

@@ -49,5 +49,18 @@ def card_render() ->rx.Component:
 def dashboard() -> rx.Component:
     return rx.fragment(
         rx.heading("Dashboard", size="8", align="center"),
+        rx.cond(
+                viewdetailsState.error,
+                rx.callout(
+                    viewdetailsState.error_text,
+                    icon="alert_triangle",
+                    color_scheme="red",
+                    role="alert",
+                    width="100%",
+                    size="1",
+                    align="center",
+                ),
+            None,
+        ),
         card_render(),
     )
