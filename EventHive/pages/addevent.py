@@ -7,7 +7,7 @@ import reflex as rx
 
 
 
-@template(route="/addevent", title="Add Event", on_load=Addevent.login_required)
+@template(route="/addevent", title="Add Event (for Committee)", on_load=Addevent.login_required)
 def addevent() -> rx.Component:
    return rx.center(
         rx.flex(

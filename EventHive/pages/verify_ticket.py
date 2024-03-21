@@ -10,7 +10,7 @@ def verify_ticket() -> rx.Component:
                 rx.text(f"Event Name: {VerifyTicket.event_name}"),
                 rx.text(f"Email: {VerifyTicket.email1}"),
                 rx.text(f"Organizing Committee: {VerifyTicket.committee}"),
-                rx.text(f"Ticket Status: {VerifyTicket.valid}"),
+                rx.text(f"Is the Ticket Valid: {VerifyTicket.valid}"),
                 rx.cond(
                     VerifyTicket.valid,
                     rx.image(src="/greentick.png", width="100px", height="auto",align="center"),
