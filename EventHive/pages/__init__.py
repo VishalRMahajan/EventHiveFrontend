@@ -5,3 +5,4 @@ from .register import register
 from .addevent import addevent
 from .viewdetails import viewdetails
 from .verify_ticket import verify_ticket
+from .mytickets import mytickets
