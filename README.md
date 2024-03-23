@@ -1,69 +1,94 @@
-# Welcome to Reflex!
 
-This is the base Reflex template - installed when you run `reflex init`.
+# EventHive Frontend
 
-If you want to use a different template, pass the `--template` flag to `reflex init`.
-For example, if you want a more basic starting point, you can run:
+Welcome to EventHiveFrontend, the frontend repository for EventHive! This repository contains the frontend code for the [EventHive](https://github.com/VishalRMahajan/EventHive) project, which is built using the Reflex and FastAPI Python frameworks. Reflex is used for creating websites entirely in Python, while FastAPI is used for building the backend API, providing a seamless full-stack development experience.
 
-```bash
-reflex init --template blank
-```
 
-## About this Template
-
-This template has the following directory structure:
+## Project Structure
 
 ```bash
 ├── README.md
 ├── assets
 ├── rxconfig.py
-└── {your_app}
+├── shared.py                        (This File Contains the Backend Url)
+├── requirements.txt
+└── EventHive
     ├── __init__.py
     ├── components
     │   ├── __init__.py
-    │   └── sidebar.py
-    ├── pages
+    │   └── sidebar.py                (SideBar Component)
+    │
+    ├── pages (Pages which return rx.component)
     │   ├── __init__.py
-    │   ├── dashboard.py
-    │   ├── index.py
-    │   └── settings.py
-    ├── styles.py
+    │   ├── dashboard.py              (Main Dashboard Page)
+    │   ├── login.py                  (Login Page)
+    │   ├── register.py               (Register Page)
+    │   ├── addevent.py               (Add Event Page for Committee)
+    │   ├── mytickets.py              (Tickets Page)
+    │   ├── profile.py                (Profile Page)
+    │   ├── verify_ticket.py          (Ticket Verification Page)
+    │   ├── viewdetails.py            (Event Details Page)
+    │   └── EventBookData.py          (Event Status Page)
+    │
+    ├── State (Python scripts facilitating POST and GET requests between frontend and backend. )
+    │   ├── __init__.py
+    │   ├── dashboardState.py         (rx.state of Dashboard Page)
+    │   ├── LoginState.py             (rx.state of Login Page)
+    │   ├── RegisterState.py          (rx.state of Register Page)
+    │   ├── addeventstate.py          (rx.state of Addevent Page)
+    │   ├── myticketsstate.py         (rx.state of Mytickets Page)
+    │   ├── profileState.py           (rx.state of Profile Page)
+    │   ├── VerifyTicketState.py      (rx.state of verify_ticket Page)
+    │   ├── loginrequired.py          (rx.state for jwt and logout fn)
+    │   ├── viewdetails.py            (rx.state of viewdetails Page)
+    │   └── EventBookedstate.py       (rx.state of EventBookData Page)
+    │
+    ├── styles.py                     (Py file similar to styles.css)
     ├── templates
     │   ├── __init__.py
-    │   └── template.py
-    └── {your_app}.py
+    │   └── template.py               (Base Template)
+    └── EventHive.py                  (main file which create app)
+```
+## Disclaimer
+
+**Important:** Before running the EventHive frontend, ensure that the backend server is running. Additionally, update the backend URL in the `shared.py` file to match your backend server's URL. Failure to do so may result in the frontend not functioning correctly.
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/VishalRMahajan/EventHiveFrontend
 ```
 
-See the [Project Structure docs](https://reflex.dev/docs/getting-started/project-structure/) for more information on general Reflex project structure.
+Go to the project directory
 
-### Adding Pages
+```bash
+  cd EventHiveFrontEnd
+```
 
-In this template, the pages in your app are defined in `{your_app}/pages/`.
-Each page is a function that returns a Reflex component.
-For example, to edit this page you can modify `{your_app}/pages/index.py`.
-See the [pages docs](https://reflex.dev/docs/pages/routes/) for more information on pages.
+Install all the required Python packages for this project, run the following command:
 
-In this template, instead of using `rx.add_page` or the `@rx.page` decorator,
-we use the `@template` decorator from `{your_app}/templates/template.py`.
+```bash
+   pip install -r requirements.txt
+```
 
-To add a new page:
+Before running for first time, run the following command:
 
-1. Add a new file in `{your_app}/pages/`. We recommend using one file per page, but you can also group pages in a single file.
-2. Add a new function with the `@template` decorator, which takes the same arguments as `@rx.page`.
-3. Import the page in your `{your_app}/pages/__init__.py` file and it will automatically be added to the app.
+```bash
+  reflex init
+```
+Run the following command to run app in development mode:
+```bash
+  reflex run
+```
+
+Your website will be running Locally at [http://localhost:3000](http://localhost:3000)
 
 
-### Adding Components
 
-In order to keep your code organized, we recommend putting components that are
-used across multiple pages in the `{your_app}/components/` directory.
 
-In this template, we have a sidebar component in `{your_app}/components/sidebar.py`.
+## Docs
 
-### Adding State
-
-As your app grows, we recommend using [substates](https://reflex.dev/docs/substates/overview/)
-to organize your state.
-
-You can either define substates in their own files, or if the state is
-specific to a page, you can define it in the page file itself.
+For any queries, Refer following Docs:
+- [Reflex Docs](https://reflex.dev/docs/ui/overview/)
